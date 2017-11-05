@@ -13,12 +13,12 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'auth_info',
     passwordField: 'password'
   },
-  function(email, password, done) {
+  function(auth_info, password, done) {
 
-    User.findOne({ email: email }, function (err, user) {
+    User.findOne({ auth_info: auth_info }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect email.' });
@@ -29,11 +29,7 @@ passport.use(new LocalStrategy({
             return done(null, false, {
               message: 'Invalid Password'
             });
-          var returnUser = {
-            email: user.email,
-            createdAt: user.createdAt,
-            id: user.id
-          };
+          var returnUser = user;
           return done(null, returnUser, {
             message: 'Logged In Successfully'
           });

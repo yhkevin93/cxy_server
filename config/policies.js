@@ -27,9 +27,12 @@ module.exports.policies = {
 
 	'*': true,
 
-	'PostController': {
+	'UserController': {
 		'*': 'isAuthenticated'
 	},
+	'adminController':{
+		'*':'adminAuth'
+	}
 
 	/***************************************************************************
 	 *                                                                          *

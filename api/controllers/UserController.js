@@ -4,6 +4,7 @@
  * @description :: Server-side logic for managing users
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
+var bcrypt = require('bcryptjs');
 
 module.exports = {
 
@@ -12,51 +13,92 @@ module.exports = {
 		shortcuts: false,
 		rest: false
 	},
-	welcome: function(req, res) {
-		res.json({
-			welcome: "welcome to kv's sails"
-		})
-	},
-	signup: function(req, res) {
-		User.create(req.allParams()).exec(function(err, user) {
+	//第一次绑定账号
+	binding: function(req, res) {
+		var data = req.allParams();
+
+		//删除余额数据防止造假
+		delete data.blance;
+		//删除密码以防胡乱修改
+		delete data.password;
+
+		data.state = '离线';
+
+		console.log(data)
+		User.update({
+			id: req.session.passport.user
+		}, data).exec(function(err, update) {
 			if(err) {
-				res.json({
-					err: err
-				})
+				return res.status(404);
 			}
 
-			res.json({
-				result: '注册成功',
-				user: user
+			return res.json({
+				result: '绑定成功',
+				user: update
 			})
-
 		})
 
 	},
-	login: function(req, res) {
 
-		passport.authenticate('local', function(err, user, info) {
-			if((err) || (!user)) {
-				return res.send({
-					message: info.message,
-					user: user
-				});
+	//用户修改自己信息
+	update: function(req, res) {
+		var data = req.allParams();
+
+		//删除余额数据防止造假
+		delete data.blance;
+		//删除密码以防胡乱修改
+		delete data.password;
+
+		console.log(data);
+
+		User.update({
+			id: req.session.passport.user
+		}, data).exec(function(err, update) {
+			if(err) {
+				return res.status(404);
 			}
-			req.logIn(user, function(err) {
-				if(err) res.send(err);
-				return res.send({
-					message: info.message,
-					user: user
-				});
-			});
 
-		})(req, res);
+			return res.json({
+				result: '修改成功',
+				user: update
+			})
+		})
+	},
+	//修改密码
+	updatePassword: function(req, res) {
+		var password = req.param('password');
+
+		bcrypt.genSalt(10, function(err, salt) {
+			bcrypt.hash(password, salt, function(err, hash) {
+				if(err) {
+					console.log(err);
+					cb(err);
+				} else {
+
+					User.update({
+						id: req.session.passport.user
+					}, {
+						password: hash
+					}).exec(function(err, update) {
+						if(err) {
+							return res.status(404);
+						}
+
+						return res.json({
+							result: '修改成功',
+							user: update
+						})
+					})
+
+				}
+			});
+		});
 	},
 
 	logout: function(req, res) {
 		req.logout();
-		res.redirect('/');
+		return res.json({
+			result: '退出成功'
+		})
 	}
 };
-
-var passport = require('passport');

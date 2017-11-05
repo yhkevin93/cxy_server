@@ -1,5 +1,5 @@
 module.exports = function(req, res, next) {
-	if(req.isAuthenticated()) {
+	if(req.session.admin) {
 		return next();
 	} else {
 		return res.json({

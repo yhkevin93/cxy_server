@@ -31,21 +31,29 @@ module.exports.routes = {
 	 * `assets` directory)                                                      *
 	 *                                                                          *
 	 ***************************************************************************/
+	/***************
+	 *  管理员行为   *
+	 ***************/
+	//管理员登录
+	'POST /admin/login': 'loginController.adminLogin',
+	//批量注册设备账号
+	'POST /admin/signup': 'adminController.signup',
+	//搜索用户
+	'POST /admin/searchUser': 'adminController.searchUser',
 
-	'/': {
-		view: 'homepage'
-	},
-	'/welcome': 'UserController.welcome',
-	'/logout': 'UserController.logout',
-	'POST /signup': 'UserController.signup',
-	'POST /login': 'UserController.login',
-	'get /signup': {
-		view: 'signup'
-	},
-	'get /login': {
-		view: 'login'
-	},
-
+	/***************
+	 *   用户行为     *
+	 ***************/
+	//用户登录
+	'POST /user/login': 'loginController.login',
+	//绑定用户信息
+	'POST /user/binding': 'userController.binding',
+	//修改用户信息
+	'POST /user/update': 'userController.update',
+	//修改密码
+	'POST /user/updatePassword': 'userController.updatePassword',
+	//登出
+	'GET /user/logout': 'userController.logout',
 	/***************************************************************************
 	 *                                                                          *
 	 * Custom routes here...                                                    *
