@@ -81,14 +81,14 @@ module.exports = {
 	},
 	getwechat: function(options, done) {
 	    var sign = wxpay.sign(options);
-	    console.log("sign="+sign);
+//	    console.log("sign="+sign);
 	    var mysign ;
 	    if(sign == options.sign){
 	    	mysign = true;
 	    }else{
 	    	mysign = false;
 	    }
-	    console.log(mysign)
+//	    console.log(mysign)
 	    return done(mysign)
 	}
 }

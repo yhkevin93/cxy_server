@@ -3,7 +3,7 @@ module.exports = function(req, res, next) {
 		return next();
 	} else {
 		return res.json({
-			result: '禁止访问'
+			result: '禁止用户访问'
 		});
 	}
 };

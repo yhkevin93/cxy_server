@@ -6,6 +6,7 @@
   "keywords": [],
   "dependencies": {
     "alidayujs": "^1.0.5",
+    "bcrypt": "~0.8.0",
     "ejs": "2.3.4",
     "grunt": "1.0.1",
     "grunt-contrib-clean": "1.0.0",
@@ -20,14 +21,14 @@
     "grunt-sails-linker": "~0.10.1",
     "grunt-sync": "0.5.2",
     "include-all": "^1.0.0",
+    "moment": "^2.19.1",
+    "passport": "~0.2.1",
+    "passport-local": "~1.0.0",
     "rc": "1.0.1",
     "sails": "~0.12.13",
     "sails-disk": "~0.10.9",
     "util": "^0.10.3",
-    "weixin-pay": "^1.1.7",
-    "bcrypt": "~0.8.0",
-    "passport": "~0.2.1",
-    "passport-local": "~1.0.0"
+    "weixin-pay": "^1.1.7"
   },
   "scripts": {
     "debug": "node debug app.js",

@@ -1,10 +1,10 @@
 module.exports = function(req, res, next) {
-	if(req.session.admin) {
-//		console.log(req.session.admin)
+	if(req.session.employee) {
+//		console.log(req.session.)
 		return next();
 	} else {
 		return res.json({
-			result: '禁止管理员访问'
+			result: '禁止员工访问'
 		});
 	}
 };

@@ -32,6 +32,9 @@ module.exports.policies = {
 	},
 	'adminController':{
 		'*':'adminAuth'
+	},
+	'employeeController':{
+		'*':'employeeAuth'
 	}
 
 	/***************************************************************************

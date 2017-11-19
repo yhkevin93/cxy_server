@@ -13,21 +13,21 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new LocalStrategy({
-    usernameField: 'auth_info',
+    usernameField: 'restaurant_id',
     passwordField: 'password'
   },
-  function(auth_info, password, done) {
+  function(restaurant_id, password, done) {
 
-    User.findOne({ auth_info: auth_info }, function (err, user) {
+    User.findOne({ restaurant_id: restaurant_id }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, { message: 'Incorrect email.' });
+        return done(null, false, { result:'没有该用户' });
       }
 
       bcrypt.compare(password, user.password, function (err, res) {
           if (!res)
             return done(null, false, {
-              message: 'Invalid Password'
+             result:'密码错误'
             });
           var returnUser = user;
           return done(null, returnUser, {
