@@ -69,10 +69,10 @@ module.exports = {
 						password: hash
 					}).exec(function(err, update) {
 						if(err) {
-							console.log(err)
+//							console.log(err)
 							return res.json(err);
 						}
-						console.log(update)
+//						console.log(update)
 						return res.json({
 							result: '修改成功',
 							user: update
@@ -402,7 +402,7 @@ module.exports = {
 
 			for(x in result) {
 				last.push(result[x]);
-				console.log(last)
+//				console.log(last)
 			}
 
 			return res.json(last)
@@ -456,7 +456,7 @@ module.exports = {
 
 			for(x in result) {
 				last.push(result[x]);
-				console.log(last)
+//				console.log(last)
 			}
 
 			return res.json(last)

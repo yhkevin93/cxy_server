@@ -21,7 +21,7 @@ module.exports.session = {
   * of your users, forcing them to log in again.                             *
   *                                                                          *
   ***************************************************************************/
-  secret: 'db20b50f37f0b09021c55b57220bf569',
+secret: 'db20b50f37f0b09021c55b57220bf569',
 
 
   /***************************************************************************
@@ -31,9 +31,9 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  // cookie: {
-  //   maxAge: 24 * 60 * 60 * 1000
-  // },
+//   cookie: {
+//     maxAge: 24 * 60 * 60 * 1000
+//   },
 
   /***************************************************************************
   *                                                                          *
@@ -44,7 +44,7 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  // adapter: 'redis',
+//   adapter: 'redis',
 
   /***************************************************************************
   *                                                                          *
@@ -74,8 +74,8 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  // adapter: 'mongo',
-  // url: 'mongodb://user:password@localhost:27017/dbname', // user, password and port optional
+     adapter: 'mongo',
+     url: 'mongodb://root:****@dds-2ze95af028f836d41.mongodb.rds.aliyuncs.com:3717,dds-2ze95af028f836d42.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-4771775', // user, password and port optional
 
   /***************************************************************************
   *                                                                          *

@@ -24,7 +24,7 @@ module.exports = {
 				})
 			}
 			
-			console.log(user)
+//			console.log(user)
 
 			user.current_oil = current_oil;
 			user.save(function(err) {
