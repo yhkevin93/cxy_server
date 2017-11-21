@@ -69,10 +69,10 @@ module.exports = {
 						password: hash
 					}).exec(function(err, update) {
 						if(err) {
-//							console.log(err)
+							//							console.log(err)
 							return res.json(err);
 						}
-//						console.log(update)
+						//						console.log(update)
 						return res.json({
 							result: '修改成功',
 							user: update
@@ -250,52 +250,53 @@ module.exports = {
 	//根据用户设备ID查看用户详细信息
 	checkUserData: function(req, res) {
 		var device_id = req.param('device_id');
+		var restaurant_id = req.param('restaurant_id')
 
 		var url = 'http://api.heclouds.com/devices/' + device_id + '/datastreams/w'
 
 		async.series({
 			一月: function(cb) {
-				oilmass(1, device_id, cb)
+				oilmass(1, restaurant_id, cb)
 			},
 			二月: function(cb) {
-				oilmass(2, device_id, cb)
+				oilmass(2, restaurant_id, cb)
 			},
 			三月: function(cb) {
-				oilmass(3, device_id, cb)
+				oilmass(3, restaurant_id, cb)
 			},
 			四月: function(cb) {
-				oilmass(4, device_id, cb)
+				oilmass(4, restaurant_id, cb)
 			},
 			五月: function(cb) {
-				oilmass(5, device_id, cb)
+				oilmass(5, restaurant_id, cb)
 			},
 			六月: function(cb) {
-				oilmass(6, device_id, cb)
+				oilmass(6, restaurant_id, cb)
 			},
 			七月: function(cb) {
-				oilmass(7, device_id, cb)
+				oilmass(7, restaurant_id, cb)
 			},
 			八月: function(cb) {
-				oilmass(8, device_id, cb)
+				oilmass(8, restaurant_id, cb)
 			},
 			九月: function(cb) {
-				oilmass(9, device_id, cb)
+				oilmass(9, restaurant_id, cb)
 			},
 			十月: function(cb) {
-				oilmass(10, device_id, cb)
+				oilmass(10, restaurant_id, cb)
 			},
 			十一月: function(cb) {
-				oilmass(11, device_id, cb)
+				oilmass(11, restaurant_id, cb)
 			},
 			十二月: function(cb) {
-				oilmass(12, device_id, cb)
+				oilmass(12, restaurant_id, cb)
 			},
 			total: function(cb) {
 				var total = 0;
 
 				Oil.find({
 					where: {
-						device_id: device_id,
+						restaurant_id: restaurant_id,
 					}
 				}).exec(function(err, oils) {
 
@@ -316,7 +317,7 @@ module.exports = {
 					//					console.log('周初' + start)
 					Oil.find({
 						where: {
-							device_id: device_id,
+							restaurant_id: restaurant_id,
 							oil_date: {
 								'>': new Date(start)
 							}
@@ -402,7 +403,7 @@ module.exports = {
 
 			for(x in result) {
 				last.push(result[x]);
-//				console.log(last)
+				//				console.log(last)
 			}
 
 			return res.json(last)
@@ -456,7 +457,7 @@ module.exports = {
 
 			for(x in result) {
 				last.push(result[x]);
-//				console.log(last)
+				//				console.log(last)
 			}
 
 			return res.json(last)
@@ -485,14 +486,14 @@ module.exports = {
 
 };
 
-function oilmass(themonth, device_id, cb) {
+function oilmass(themonth, restaurant_id, cb) {
 	timeService.getMonthDate({
 		month: themonth
 	}, function(month) {
 
 		Oil.find({
 			where: {
-				device_id: device_id,
+				restaurant_id: restaurant_id,
 				oil_date: {
 					'startsWith': month
 				}

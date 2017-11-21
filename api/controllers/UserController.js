@@ -117,7 +117,7 @@ module.exports = {
 	//用户去读自己油量信息
 	oilData: function(req, res) {
 
-		var url = 'http://api.heclouds.com/devices/' + req.session.user.restaurant_id + '/datastreams/w'
+		var url = 'http://api.heclouds.com/devices/' + req.session.user.device_id + '/datastreams/w'
 		httpService.http({
 			url: url,
 			method: 'GET',
